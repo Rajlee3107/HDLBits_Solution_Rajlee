@@ -1,0 +1,57 @@
+module top_module( 
+    input [99:0] a, b,
+    input cin,
+    output cout,
+    output reg [99:0]C,
+    output reg [99:0] sum );
+    integer i;
+    assign C[0] = a[0]&b[0] | cin&b[0] | a[0]&cin;
+    assign sum[0] = a[0] ^ b[0] ^ cin;
+    always @(*) begin
+        for(i = 1; i<100; i=i+1) begin
+            sum[i] = a[i] ^ b[i] ^ C[i-1];
+            C[i] = a[i]&b[i] | C[i-1]&b[i] | a[i]&C[i-1];
+        end
+    end
+    assign cout = C[99];
+endmodule
+
+//METHOD2
+//Copied from https://github.com/viduraakalanka/HDL-Bits-Solutions/blob/master/6%20-%20Combinational%20Logic/3%20-%20Arithmatic%20Circuits/5%20-%20100-bit%20binray%20Adder.v
+
+module top_module( 
+    input [99:0] a, b,
+    input cin,
+    output cout,
+    output [99:0] sum );
+
+    genvar i;
+    wire [98:0]con_vect;
+    one_bit_FA FA1(a[0],b[0],cin,con_vect[0],sum[0]);
+    one_bit_FA FA2(a[99],b[99],con_vect[98],cout,sum[99]);
+    
+    //this is a generte block
+    //The loop generate construct provides an easy and concise method to create multiple instances 
+    //of module items such as module instances, assign statements, assertions, interface instances 
+    //In essence generate block is a special type of for loop with the loop index variable of datatype genvar.
+    generate
+        for (i=1; i<99; i=i+1) begin : Full_adder_block
+            one_bit_FA FA(a[i],b[i],con_vect[i-1],con_vect[i],sum[i]);
+    end
+    
+      
+    endgenerate
+    
+endmodule
+
+module one_bit_FA(
+    input a,b,
+    input cin,
+    output cout,sum);
+	
+    assign sum  = a^b^cin;
+    assign cout = (a&b)|(b&cin)|(cin&a);
+endmodule
+
+
+//one must know to code in dataflow, structural, and behavioral model. Especially if you are aspiring to get placed.
