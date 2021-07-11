@@ -1,0 +1,17 @@
+module top_module (
+    input clk,
+    input reset,
+    input [31:0] in,
+    output [31:0] out
+);
+    //reg q;
+    reg [31:0] in_between;
+    always @( posedge clk ) begin
+        in_between <= in;
+        if (reset) out <= 0;
+        else if (in_between & ~in) out <= in_between & ~in | out;
+        else out <= out;
+    end
+   
+
+endmodule

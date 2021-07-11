@@ -1,0 +1,22 @@
+module top_module (
+    input clk,
+    input j,
+    input k,
+    output reg Q); 
+	always @ (posedge clk) begin
+        case ({j,k})
+            2'b00: Q <= Q;
+            2'b01: Q <= 1'b0;
+            2'b10: Q <= 1'b1;
+            2'b11: Q <= ~Q;
+        endcase
+    end
+endmodule
+    
+            
+// the questions here they gave is just to confuse you. ;p 
+// when said Qold it is nothing but Q. How? 
+// here     2'b00: Q <= Q;        the Q that is getting stored is the Qold as Q is will be the value before clock edge.
+            2'b01: Q <= 1'b0;
+            2'b10: Q <= 1'b1;
+            2'b11: Q <= ~Q;

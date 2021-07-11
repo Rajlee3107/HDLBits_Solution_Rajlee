@@ -1,0 +1,17 @@
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] pedge
+);
+    reg [7:0]in_between;
+    
+    always @ (posedge clk) begin
+        in_between <= in;
+        pedge      <= (~in_between) & in;
+    end
+
+endmodule
+
+//tricky right? 
+//mark this question and the previous one
+//if you have a good understanding of digital system design you will figure this out. else you could always revise ddigital system design.

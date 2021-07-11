@@ -1,0 +1,13 @@
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    reg [7:0] in_between;
+    
+    always @ (posedge clk) begin
+        in_between <= in;
+        anyedge <= in_between ^ in ;
+    end
+
+endmodule
