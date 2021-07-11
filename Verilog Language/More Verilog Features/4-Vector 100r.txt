@@ -1,0 +1,14 @@
+module top_module( 
+    input [99:0] in,
+    output [99:0] out
+);
+    reg t;
+    always @(*) begin
+        for (integer i = 0; i<100; i++) begin
+            t = in[i];
+            out[i]=in[99-i];
+            out[99-i] = t;
+        end
+    end
+    
+endmodule

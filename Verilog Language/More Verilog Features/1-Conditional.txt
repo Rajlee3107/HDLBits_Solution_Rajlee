@@ -1,0 +1,12 @@
+module top_module (
+    input [7:0] a, b, c, d,
+    output [7:0] min);//
+    wire wa, wb, wc;
+
+    // assign intermediate_result1 = compare? true: false;
+    assign wa = (a<b)&(a<c)&(a<d);
+    assign wb = (b<a)&(b<c)&(b<d);
+    assign wc = (c<a)&(c<b)&(c<d);
+    assign min = wa?a:(wb?b:(wc?c:d));
+
+endmodule

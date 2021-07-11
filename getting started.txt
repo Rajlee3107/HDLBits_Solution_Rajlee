@@ -1,0 +1,13 @@
+#StepOne
+module top_module( output one );
+	
+	assign one = 1'b1;
+	
+endmodule
+
+#ZeroOutput
+module top_module ( output zero );
+	
+	assign zero = 1'b0;
+	
+endmodule

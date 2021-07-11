@@ -1,0 +1,12 @@
+module top_module ( 
+    input p1a, p1b, p1c, p1d, p1e, p1f,
+    output p1y,
+    input p2a, p2b, p2c, p2d,
+    output p2y );
+    wire N1 = p2a & p2b;
+    wire N2 = p1a & p1b & p1c;
+    wire N3 = p2c & p2d ;
+    wire N4 = p1f & p1e & p1d;
+    or or1(p2y,N1,N3);
+    or or2(p1y,N2,N4);
+endmodule
