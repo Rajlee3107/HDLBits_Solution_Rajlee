@@ -15,3 +15,4 @@ module top_module (
     bcdcount counter2 (clk, reset, c_enable[2], q2);
     
 endmodule
+//this code has been taken from "https://github.com/y-C-x/HDLBits_Solution/blob/master/3%20Circuit/3.2%20Sequential%20Logic/3.2.2%20Counters/3.2.2.6%20counter%201000.v"
